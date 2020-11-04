@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- APLICATIE BANCARA -->
+<html>
+	<head>
+		<title> Aplicatie bancara </title>
+	
+	</head>
+	
+	<body>
+		<h1> Aplicatie Bancara </h1>
+		<p>  Ma numesc Gavrilescu Petru-Albert si sunt student al grupei 231. In cele ce urmeaza, voi prezenta succint aplicatia pe care o voi face, tema aleasa fiind "Departamentul unei banci". </p>
+		<p>  Voi incepe prin a descrie baza de date care va sta la baza acestei aplicatii web. Modelarea activitatii unei banci o voi face prin operatiuni bancare, operatiuni ce le voi prezenta ulterior.
+			 Totusi, pentru reprezentarea schemei conceptuale, primul pas ar fi identificarea entitatilor(obiecte de interes pentru care trebuie sa existe date inregistrate). Eu am identificat urmatoarele entitati:	
+		</p>
+		<ul>
+			<li> Cont </li>
+			<li> Client </li>
+			<li> Tranzactie cont </li>
+			<li> Tip de operatiune </li>
+		</ul>
+		<p>
+		Pentru simplitate, vom considera ca fiecare client va avea un singur cont si ca un cont are un singur detinator. De asemenea, se va considera ca banca este unica,
+		astfel nu va fi nevoie sa adaugam la modelul nostrum si entitatea “banca”. Operatiunile bancare din cadrul aplicatiei vor fi:
+		</p>
+		<ul>
+			<li> Deschidere cont </li>
+			<li> Inchidere cont </li>
+			<li> Depunere bani in cont de la ghiseu </li>
+			<li> Extragere bani de la ghiseu </li>
+			<li> Depunere bani de la bancomat </li>
+			<li> Extragere bani de la bancomat </li>
+			<li> Transfer bani dintr-un cont in altul </li>
+			<li> Inregistrarea tuturor operatiunilor in cont, inclusiv si operatiunile esuate </li>
+			<li> Consultare balanta cont </li>
+			<li> Istoric tranzactii</li>
+		</ul>
+		<p> In cele ce urmeaza, voi prezenta diagrama entitate-relatie cu legaturile de multiplicitate aferente: </p>
+		<img src="Diagrama Entitate-Relatie.png" width="40%" height="35%" alt="Imaginea nu se incarca">
+		<p> Astfel, in diagrama exista urmatoarele legaturi: </p>
+		<ul>
+			<li> Operatiunile(tranzactiile financiare) se fac intre conturi  </li>
+			<li> Intre doua conturi se pot face mai multe operatiuni  </li>
+			<li> O operatiune va trebui sa aiba un cont sursa si un cont destinatie  </li>
+			<li> O extragere de la ghiseu sau o extragere de la bancomat va vea doar cont sursa(contul clientului care face operatiunea), contul destinatie fiind NULL  </li>
+			<li> O depunere la ghiseu sau la bancomat va avea doar cont destinatie(contul clientului care face operatiunea), contul sursa fiind NULL </li>
+		</ul>
+		<p> Acum voi prezenta diagrama entitate-legatura cu legaturile intre relatii evidentiate. Campurile de legatura vor deveni chei straine in tabelele pe care le vom crea, referintele fiind catre chei
+			primare in tabelele cu care sunt conectate
+		</p>
+		<img src="Diagrama Entitate-Legatura.png" width="40%" height="35%" alt="Imaginea nu se incarca">
+		
+		<p> In paragrafele ce urmeaza, voi discuta exclusiv despre aplicatia web, ce intrebuintare o sa aiba, ce tipuri de utilizatori vor exista, ce tranzactii se vor putea face, formularele pentru inregitrare si conectare etc.
+			Aplicatia va avea si un sistem de notificari(pentru acele persoane care intarzia cu plata creditului, etc.)</p>
+		<p> Voi incepe prin a prezenta categoriile de utilizatori:</p>
+		<ul>
+			<li> Vizitatori</li>
+				<p> Acestia pot accesa doar home, adica pagina de prezentare a bancii, in care pot citi anumite informatii despre: banca, credite, asigurari, pot vizualiza schimbul lor valutar, etc., dar si alte campuri
+					precum inregistreaza-te, etc. Acestia au foarte putine facilitati</p>
+			<li> Useri </li>
+				<p> Acest tip de utilizator are mai multe facilitati: poate face operatii  </p>
+			<li> Administratori </li>
+				<p> Acest tip de utilizator are facilitati pe care doar el le poseda: poate vizualiza conturile inscrise la acea banca, adica poate observa toate datele unui utilizator. Acesta are si dreptul de a bloca
+					anumiti useri sau sa le inchida contul permanent sau temporar(poate din cauza ca cineva a incercat sa acceseze in mod fraudulos banii; acesta fiind un mijloc de protectie -> se trimite e-mail de instiintare)
+				</p>
+		</ul>
+		<p> Un alt aspect important ar fi reprezentat de formularele de inscriere si conectare. Atunci cand te inregistrezi, va trimis un e-mail de confirmare cu un token, token ce va deveni inactiv dupa activare sau
+			va deveni incativ dupa o anumita perioada de timp. Atunci cand ne inregistram, va exista si un captcha pentru a mari gradul de securitate. </p>
+		<p> Pentru a mai creste gradul de securitate, atunci cand se va gresi conectarea, nu va fi specificat daca este parola sau username-ul. La fel, daca parola se va gresi de mai mult de 3/5 ori, automat nu te vei mai
+			putea conecta timp de o ora. Ma voi gandi si la alte masuri de siguranta</p>
+		<p> Voi incheia prin a prezenta o diagrama restransa care sa exemplifice modul in care doresc sa lucrez:</p>
+		<img src="Diagrama Aplicatie Web.png" width="50%" height="45%" alt="Imaginea nu se incarca">
+		
+	</body>
+
+</html>
